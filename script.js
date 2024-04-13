@@ -5,6 +5,10 @@ $(document).ready(function () {
         event.preventDefault();
         clearErrorIcons();
         const age = $('#age').val();
+        if ($('#income').val().length === 0) {
+            showErrorIcon('income', 'This is a mandatory field.');
+            return;
+        }
         const income = parseFloat($('#income').val());
         const extraIncome = $('#extraIncome').val().length === 0 ? 0 : parseFloat($('#extraIncome').val);
         const deductions = $('#deductions').val().length === 0 ? 0 : parseFloat($('#extraIncome').val);
@@ -26,11 +30,11 @@ $(document).ready(function () {
             isValid = false;
         }
         if (isNaN(extraIncome) || extraIncome < 0) {
-            showErrorIcon('extraIncome', 'Please enter a valid income');
+            showErrorIcon('extraIncome', 'Please enter a valid value');
             isValid = false;
         }
         if (isNaN(deductions) || deductions < 0) {
-            showErrorIcon('deductions', 'Please enter a valid income');
+            showErrorIcon('deductions', 'Please enter a valid value');
             isValid = false;
         }
         return isValid;
