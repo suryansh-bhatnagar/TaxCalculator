@@ -6,47 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tax Calculator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Tax Calculator</h1>
-        <form id="taxForm">
-            <div class="form-group">
-                <label for="age">Age</label>
-                <select id="age" class="form-control" required>
-                    <option value="<40">&lt;40</option>
-                    <option value="≥40 & &lt;60">&ge;40 and &lt;60</option>
-                    <option value="≥60">&ge;60</option>
-                </select>
-                <div class="error-icon" id="ageErrorIcon"></div>
+    <div class="container w-75">
+        <div class="container my-4 w-50">
+            <h1 class="text-center">Tax Calculator</h1>
+            <form id="taxForm" class="border border-secondary p-5 rounded-lg">
+                <div class="form-group">
+                    <label for="income" class="font-weight-bold">Gross Annual Income</label>
+                    <span class="px-1" data-toggle="tooltip" data-placement="top"
+                        title="Gross annual income is your total salary in a year before any deduction">
+                        <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                d="M256 8C119 8 8 119.1 8 256c0 137 111 248 248 248s248-111 248-248C504 119.1 393 8 256 8zm0 448c-110.5 0-200-89.4-200-200 0-110.5 89.5-200 200-200 110.5 0 200 89.5 200 200 0 110.5-89.4 200-200 200zm107.2-255.2c0 67.1-72.4 68.1-72.4 92.9V300c0 6.6-5.4 12-12 12h-45.6c-6.6 0-12-5.4-12-12v-8.7c0-35.7 27.1-50 47.6-61.5 17.6-9.8 28.3-16.5 28.3-29.6 0-17.2-22-28.7-39.8-28.7-23.2 0-33.9 11-48.9 30-4.1 5.1-11.5 6.1-16.7 2.1l-27.8-21.1c-5.1-3.9-6.3-11.1-2.6-16.4C184.8 131.5 214.9 112 261.8 112c49.1 0 101.5 38.3 101.5 88.8zM298 368c0 23.2-18.8 42-42 42s-42-18.8-42-42 18.8-42 42-42 42 18.8 42 42z" />
+                        </svg>
+                    </span>
+                    <div class="row mr-0">
+                        <div class="col pr-0">
+                            <input id="income" class="form-control border-none" autocomplete="off">
+                        </div>
+                        <div class="col-auto d-flex items-center error-box">
+                            <span class="error-icon" id="incomeErrorIcon" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-exclamation-circle" style="font-size:24px;color:red"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="extraIncome" class="font-weight-bold">Extra Income</label>
+                    <span class="px-1" data-toggle="tooltip" data-placement="top"
+                        title="Extra income is your income from other sources">
+                        <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                d="M256 8C119 8 8 119.1 8 256c0 137 111 248 248 248s248-111 248-248C504 119.1 393 8 256 8zm0 448c-110.5 0-200-89.4-200-200 0-110.5 89.5-200 200-200 110.5 0 200 89.5 200 200 0 110.5-89.4 200-200 200zm107.2-255.2c0 67.1-72.4 68.1-72.4 92.9V300c0 6.6-5.4 12-12 12h-45.6c-6.6 0-12-5.4-12-12v-8.7c0-35.7 27.1-50 47.6-61.5 17.6-9.8 28.3-16.5 28.3-29.6 0-17.2-22-28.7-39.8-28.7-23.2 0-33.9 11-48.9 30-4.1 5.1-11.5 6.1-16.7 2.1l-27.8-21.1c-5.1-3.9-6.3-11.1-2.6-16.4C184.8 131.5 214.9 112 261.8 112c49.1 0 101.5 38.3 101.5 88.8zM298 368c0 23.2-18.8 42-42 42s-42-18.8-42-42 18.8-42 42-42 42 18.8 42 42z" />
+                        </svg>
+                    </span>
+                    <div class="row mr-0">
+                        <div class="col pr-0">
+                            <input id="extraIncome" class="form-control border-none" autocomplete="off">
+                        </div>
+                        <div class="col-auto d-flex items-center error-box">
+                            <span class="error-icon" id="extraIncomeErrorIcon" data-toggle="tooltip"
+                                data-placement="top">
+                                <i class="fa fa-exclamation-circle" style="font-size:24px;color:red"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age" class="font-weight-bold">Age</label>
+                    <select id="age" class="form-control pr-0" required>
+                        <option value="<40">&lt;40</option>
+                        <option value="≥40 & <60">&ge;40 and &lt;60</option>
+                        <option value="≥60">&ge;60</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="deductions" class="font-weight-bold">Deductions</label>
+                    <span class="px-1" data-toggle="tooltip" data-placement="top"
+                        title="Claims made to reduce your taxable income">
+                        <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                d="M256 8C119 8 8 119.1 8 256c0 137 111 248 248 248s248-111 248-248C504 119.1 393 8 256 8zm0 448c-110.5 0-200-89.4-200-200 0-110.5 89.5-200 200-200 110.5 0 200 89.5 200 200 0 110.5-89.4 200-200 200zm107.2-255.2c0 67.1-72.4 68.1-72.4 92.9V300c0 6.6-5.4 12-12 12h-45.6c-6.6 0-12-5.4-12-12v-8.7c0-35.7 27.1-50 47.6-61.5 17.6-9.8 28.3-16.5 28.3-29.6 0-17.2-22-28.7-39.8-28.7-23.2 0-33.9 11-48.9 30-4.1 5.1-11.5 6.1-16.7 2.1l-27.8-21.1c-5.1-3.9-6.3-11.1-2.6-16.4C184.8 131.5 214.9 112 261.8 112c49.1 0 101.5 38.3 101.5 88.8zM298 368c0 23.2-18.8 42-42 42s-42-18.8-42-42 18.8-42 42-42 42 18.8 42 42z" />
+                        </svg>
+                    </span>
+                    <div class="row mr-0">
+                        <div class="col pr-0">
+                            <input id="deductions" class="form-control border-none" autocomplete="off">
+                        </div>
+                        <div class="col-auto d-flex items-center error-box">
+                            <span class="error-icon" id="deductionsErrorIcon" data-toggle="tooltip"
+                                data-placement="top">
+                                <i class="fa fa-exclamation-circle" style="font-size:24px;color:red"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate Tax</button>
+            </form>
+        </div>
+        <div id="modal" class="taxModal">
+            <div class="modal-content p-5">
+                <h2>Tax Calculation Result</h2>
+                <p id="taxResult"></p>
+                <button id="close" class=" btn btn-primary btn-sm w-25 mx-auto">Close</button>
             </div>
-            <div class="form-group">
-                <label for="income">Gross Annual Income</label>
-                <input type="number" id="income" class="form-control" required>
-                <div class="error-icon" id="incomeErrorIcon"></div>
-            </div>
-            <div class="form-group">
-                <label for="extraIncome">Extra Income</label>
-                <input type="number" id="extraIncome" class="form-control">
-                <div class="error-icon" id="extraIncomeErrorIcon"></div>
-            </div>
-            <div class="form-group">
-                <label for="deductions">Deductions</label>
-                <input type="number" id="deductions" class="form-control">
-                <div class="error-icon" id="deductionsErrorIcon"></div>
-            </div>
-            <button type="submit" class="btn">Calculate Tax</button>
-        </form>
-    </div>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Tax Calculation Result</h2>
-            <p id="taxResult"></p>
         </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./script.js"></script>
 </body>
