@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 #ageErrorIcon,
 #deductionsErrorIcon,
 #extraIncomeErrorIcon,
@@ -26,10 +30,21 @@ input.form-control {
 }
 
 .taxModal {
-    width: 50vw;
+    width: 80vw;
     display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media (min-width: 992px) {
+    .taxModal {
+        width: 50vw;
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
